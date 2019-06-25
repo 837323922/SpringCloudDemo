@@ -14,4 +14,5 @@ public class User {
     private String phone;
     private Date reg_time;
     private Integer balance;
+    private int role;
 }
