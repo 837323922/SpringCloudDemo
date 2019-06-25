@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 
 @RestController
 public class UserController {
@@ -21,6 +22,8 @@ public class UserController {
         User user = new User();
         user.setUsername(username);
         user.setPassword(password);
+        user.setRole(1);
+        user.setReg_time(new Date());
         userService.crearteNewUser(user);
         return "create success!";
     }
