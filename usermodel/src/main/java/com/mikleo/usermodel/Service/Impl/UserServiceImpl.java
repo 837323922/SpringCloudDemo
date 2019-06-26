@@ -1,7 +1,7 @@
 package com.mikleo.usermodel.Service.Impl;
 
-import com.mikleo.usermodel.Mappers.UserMapper;
-import com.mikleo.usermodel.POJO.User;
+import com.mikleo.usermodel.Dao.UserDao;
+import com.mikleo.usermodel.Model.User;
 import com.mikleo.usermodel.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,36 +14,36 @@ import java.security.NoSuchAlgorithmException;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    public UserMapper userMapper;
+    public UserDao userDao;
 
     @Override
     public User getUserByuserId(Integer id) {
-        return userMapper.getUserByuserId(id);
+        return userDao.getUserByuserId(id);
     }
 
     @Override
     public User getUserByusername(String username) {
-        return userMapper.getUserByusername(username);
+        return userDao.getUserByusername(username);
     }
 
     @Override
     public void crearteNewUser(User user) {
         user.setPassword(md5(user.getPassword()));
-        userMapper.crearteNewUser(user);
+        userDao.crearteNewUser(user);
     }
 
     @Override
     public void changePassword(User user) {
         user.setPassword(md5(user.getPassword()));
-        userMapper.changePassword(user);
+        userDao.changePassword(user);
     }
 
     @Override
     public void changeMsg(User user) {
-        userMapper.changeMsg(user);
+        userDao.changeMsg(user);
     }
 
-    private String md5(String plainText) {
+    public static String md5(String plainText) {
         //定义一个字节数组
         byte[] secretBytes = null;
         try {

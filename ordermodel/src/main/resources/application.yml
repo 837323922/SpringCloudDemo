@@ -7,7 +7,7 @@ spring:
     password: wang1818
     driver-class-name: com.mysql.jdbc.Driver
   application:
-    name: service-OrderModel
+    name: service-ordermodel
 eureka:
   client:
     serviceUrl:

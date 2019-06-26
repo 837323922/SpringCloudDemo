@@ -1,6 +1,6 @@
 package com.mikleo.usermodel.Service;
 
-import com.mikleo.usermodel.POJO.User;
+import com.mikleo.usermodel.Model.User;
 
 public interface UserService {
 

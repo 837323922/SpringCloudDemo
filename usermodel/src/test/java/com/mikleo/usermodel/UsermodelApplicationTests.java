@@ -1,7 +1,8 @@
 package com.mikleo.usermodel;
 
-import com.mikleo.usermodel.Mappers.UserMapper;
-import com.mikleo.usermodel.POJO.User;
+import com.google.gson.Gson;
+import com.mikleo.usermodel.Dao.UserDao;
+import com.mikleo.usermodel.Model.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +14,17 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class UsermodelApplicationTests {
 
     @Autowired
-    UserMapper userMapper;
+    UserDao userDao;
 
     @Test
     public void contextLoads() {
-        User user = userMapper.getUserByuserId(1);
-        System.out.println(user.getUsername());
+        Gson gson = new Gson();
+        User user = userDao.getUserByuserId(1);
+        user.setUsername("test01");
+
+        String res =  gson.toJson(user);
+        System.out.println(res);
+
     }
 
 }
