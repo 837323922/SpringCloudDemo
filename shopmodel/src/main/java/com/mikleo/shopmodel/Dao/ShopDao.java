@@ -24,6 +24,6 @@ public interface ShopDao {
     @Update("UPDATE Shop SET accumulatepoint=#{accumulatepoint} WHERE shop_id = #{shop_id}")
     void changeshopstock(Shop shop);
 
-    @Update("UPDATE Shop SET shopname=#{shopname},accumulatepoint=#{accumulatepoint},shoprank=#{shoprank},shopaddress=#{shopaddress}")
+    @Update("UPDATE Shop SET shopname=#{shopname},accumulatepoint=#{accumulatepoint},shoprank=#{shoprank},shopaddress=#{shopaddress} WHERE shop_id=#{shop_id}")
     void updateshopMsg(Shop shop);
 }

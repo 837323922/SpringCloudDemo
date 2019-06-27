@@ -11,7 +11,7 @@ zuul:
   routes:
     api-a:
       path: /**
-      serviceId: service-shopmodel
+      serviceId: service-usermodel
 #    api-b:
 #      path: /api-b/**
 #      serviceId: service-feign

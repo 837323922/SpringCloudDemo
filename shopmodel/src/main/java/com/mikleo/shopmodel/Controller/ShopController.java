@@ -27,25 +27,25 @@ public class ShopController {
     public String createNewshop(@RequestBody Shop shop) {
         shop.setAccumulatepoint(0);
         shop.setShoprank("铜");
-        shop.setShopcreatedtime(new Date());
+        shop.setShopcreatedtime(new java.sql.Date(new Date().getTime()));
         shopService.createNewshop(shop);
         return "商家创建成功";
     }
 
-    @RequestMapping(value = "/shop", method = RequestMethod.DELETE)
-    public String deleteshopById(int id) {
+    @RequestMapping(value = "/shop/{id}", method = RequestMethod.DELETE)
+    public String deleteshopById(@PathVariable int id) {
         shopService.deleteshopById(id);
         return "删除成功";
     }
 
     @RequestMapping(value = "/shop", method = RequestMethod.PATCH)
-    public String changeshopstock(Shop shop) {
+    public String changeshopstock(@RequestBody Shop shop) {
         shopService.changeshopstock(shop);
         return "商家积分修改成功";
     }
 
     @RequestMapping(value = "/shop", method = RequestMethod.PUT)
-    public String updateshopMsg(Shop shop) {
+    public String updateshopMsg(@RequestBody Shop shop) {
         shopService.updateshopMsg(shop);
         return "修改成功";
     }

@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 @EnableEurekaClient
-@MapperScan("com.mikleo.shopmodel")
+@MapperScan("com.mikleo.shopmodel.Dao")
 @SpringBootApplication
 public class ShopApplication {
 

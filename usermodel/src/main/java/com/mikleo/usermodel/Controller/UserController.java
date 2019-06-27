@@ -27,7 +27,7 @@ public class UserController {
     @RequestMapping(value = "/user", method = RequestMethod.POST)
     public String createNewUser(@RequestBody User user) {
         user.setRole(1);
-        user.setReg_time(new Date());
+        user.setReg_time(new java.sql.Date(new Date().getTime()));
         user.setBalance(0);
         userService.crearteNewUser(user);
         return "create success!";
@@ -55,12 +55,12 @@ public class UserController {
         return "信息修改成功";
     }
 
-    @RequestMapping(value = "/login",method = RequestMethod.POST)
+    @RequestMapping(value = "/login2",method = RequestMethod.POST)
     public String login(HttpServletRequest httpRequest, @RequestBody LoginMsg loginMsg){
         String sessionId = httpRequest.getSession().getId();
         User user = (User) redisTemplate.opsForValue().get(sessionId);
-        if (user != null)
-            return "成功";
+        if (user != null && user.getUsername().equals(loginMsg.getUsername()))
+            return "有缓存用户";
         else {
             User tmp = userService.getUserByusername(loginMsg.getUsername());
             if (tmp.getPassword().equals(md5(loginMsg.getPassword()))){
