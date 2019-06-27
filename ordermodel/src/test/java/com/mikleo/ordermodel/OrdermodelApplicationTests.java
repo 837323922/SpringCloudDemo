@@ -22,4 +22,7 @@ public class OrdermodelApplicationTests {
         Order order = OrderDao.findOrderByorder_id(1);
         System.out.println(gson.toJson(order));
     }
+
+//{"order_id":1,"good_id":1,"user_id":1,"goodname":"1","goodnum":1,"unitprice":1,"totalprice":1,"ordertime":"2009-6-11","orderstate":0,"fromaddress":"1","toaddress":"1","fromphone":"1","tophone":"1","fromname":"1","toname":"1"}
+
 }

@@ -16,7 +16,7 @@ public interface UserDao {
     @Select("SELECT * FROM User WHERE username = #{username}")
     User getUserByusername(String username);
 
-    @Insert("INSERT INTO User(username,password,reg_time,role) VALUES(#{username},#{password},#{reg_time},#{role})")
+    @Insert("INSERT INTO User(username,password,reg_time,role) VALUES (#{username},#{password},#{reg_time},#{role})")
     void crearteNewUser(User user);
 
     @Update("UPDATE User SET password = #{password} WHERE user_id = #{user_id} and username = #{username}")

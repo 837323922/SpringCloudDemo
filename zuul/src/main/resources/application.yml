@@ -3,15 +3,15 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
 server:
-  port: 8769
+  port: 8080
 spring:
   application:
     name: service-zuul
 zuul:
   routes:
-#    api-a:
-#      path: /api-a/**
-#      serviceId: service-ribbon
+    api-a:
+      path: /**
+      serviceId: service-shopmodel
 #    api-b:
 #      path: /api-b/**
 #      serviceId: service-feign

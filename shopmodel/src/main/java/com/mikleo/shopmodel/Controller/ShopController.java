@@ -1,7 +1,7 @@
-package com.mikleo.shop.Controller;
+package com.mikleo.shopmodel.Controller;
 
-import com.mikleo.shop.Model.Shop;
-import com.mikleo.shop.Service.ShopService;
+import com.mikleo.shopmodel.Model.Shop;
+import com.mikleo.shopmodel.Service.ShopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

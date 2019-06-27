@@ -15,7 +15,7 @@ public interface GoodDao {
     List<Good> findGoodsByshop_id(int id);
 
 
-    @Insert("INSERT INTO Goods VALUES(null,#{shop_id},#{goodname},#{gooddec},#{goodprice},#{goodstock}," +
+    @Insert("INSERT INTO Goods VALUES(null,#{shop_id},#{goodname},#{gooddesc},#{goodprice},#{goodstock}," +
             "#{salesvolume},#{goodcreatedtime},#{goodupdatetime})")
     void createNewGood(Good good);
 
@@ -25,6 +25,8 @@ public interface GoodDao {
     @Update("UPDATE Goods SET goodstock=#{goodstock} WHERE good_id = #{good_id}")
     void changeGoodstock(Good good);
 
-    @Update("UPDATE Order SET goodname=#{goodname},gooddec=#{gooddec},goodprice=#{goodprice},goodstock=#{goodstock},salesvolume=#{salesvolume},#{goodcreatedtime},#{goodupdatetime}")
+    @Update("UPDATE Goods SET goodname=#{goodname},gooddesc=#{gooddesc},goodprice=#{goodprice},goodstock=#{goodstock}," +
+            "salesvolume=#{salesvolume},goodcreatedtime = #{goodcreatedtime},goodupdatetime = #{goodupdatetime}" +
+            "WHERE good_id =#{good_id}")
     void updateGoodMsg(Good good);
 }

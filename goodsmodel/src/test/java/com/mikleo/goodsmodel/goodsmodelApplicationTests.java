@@ -24,5 +24,5 @@ public class goodsmodelApplicationTests {
         Good good = goodDao.findGoodBygood_id(1);
         System.out.println(gson.toJson(good));
     }
-
+//    {"good_id":1,"shop_id":1,"goodname":"1","gooddesc":"1","goodprice":1.0,"goodstock":1,"salesvolume":1,"goodcreatedtime":"Nov 2, 2009 12:00:00 AM"}
 }

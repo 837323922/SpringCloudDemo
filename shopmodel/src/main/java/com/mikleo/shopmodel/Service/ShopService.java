@@ -1,6 +1,6 @@
-package com.mikleo.shop.Service;
+package com.mikleo.shopmodel.Service;
 
-import com.mikleo.shop.Model.Shop;
+import com.mikleo.shopmodel.Model.Shop;
 
 
 public interface ShopService {

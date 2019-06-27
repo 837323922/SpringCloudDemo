@@ -1,4 +1,4 @@
-package com.mikleo.shop.Model;
+package com.mikleo.shopmodel.Model;
 
 import lombok.Data;
 

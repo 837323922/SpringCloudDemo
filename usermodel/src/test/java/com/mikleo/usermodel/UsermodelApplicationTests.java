@@ -21,10 +21,9 @@ public class UsermodelApplicationTests {
         Gson gson = new Gson();
         User user = userDao.getUserByuserId(1);
         user.setUsername("test01");
-
         String res =  gson.toJson(user);
         System.out.println(res);
 
     }
-
+//    {"user_id":1,"username":"test01","password":"1","sex":"1","email":"1","phone":"1","reg_time":"2019-6-27","role":0}
 }

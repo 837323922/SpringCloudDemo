@@ -2,7 +2,7 @@ package com.mikleo.ordermodel.Model;
 
 import lombok.Data;
 
-import java.util.Date;
+import java.sql.Date;
 
 @Data
 public class Order {
@@ -11,8 +11,8 @@ public class Order {
     private  int user_id;
     private String goodname;
     private int goodnum;
-    private int unitprice;
-    private int totalprice;
+    private double unitprice;
+    private double totalprice;
     private Date ordertime;
     private int orderstate;
     private Date comfirmtime;
