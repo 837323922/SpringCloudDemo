@@ -1,6 +1,13 @@
 server:
   port: 8758
 spring:
+  elasticsearch:
+    jest:
+      uris: http://localhost:9200
+#  data:
+#    elasticsearch:
+#      cluster-name: MyEsSearch
+#      cluster-nodes: 106.15.200.55:9300
   datasource:
     url: jdbc:mysql://118.89.64.195:3306/Businiess
     username: root

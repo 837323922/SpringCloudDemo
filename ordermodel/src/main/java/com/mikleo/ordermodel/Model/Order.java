@@ -1,11 +1,13 @@
 package com.mikleo.ordermodel.Model;
 
+import io.searchbox.annotations.JestId;
 import lombok.Data;
 
 import java.sql.Date;
 
 @Data
 public class Order {
+    @JestId
     private int order_id;
     private int good_id;
     private  int user_id;

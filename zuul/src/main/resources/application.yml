@@ -7,6 +7,14 @@ server:
 spring:
   application:
     name: service-zuul
+  redis:
+    host: 118.89.64.195
+    port: 6379
+    password:
+    pool:
+      maxIdle: 300
+      maxActive: 600
+      maxWait: 1000
 zuul:
   routes:
     api-a:

@@ -55,20 +55,5 @@ public class UserController {
         return "信息修改成功";
     }
 
-    @RequestMapping(value = "/login2",method = RequestMethod.POST)
-    public String login(HttpServletRequest httpRequest, @RequestBody LoginMsg loginMsg){
-        String sessionId = httpRequest.getSession().getId();
-        User user = (User) redisTemplate.opsForValue().get(sessionId);
-        if (user != null && user.getUsername().equals(loginMsg.getUsername()))
-            return "有缓存用户";
-        else {
-            User tmp = userService.getUserByusername(loginMsg.getUsername());
-            if (tmp.getPassword().equals(md5(loginMsg.getPassword()))){
-                redisTemplate.opsForValue().set(sessionId,tmp);
-                return "成功";
-            }else
-                return "失败";
-        }
-    }
 
 }
