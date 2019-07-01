@@ -56,6 +56,7 @@ public class AccessFilter extends ZuulFilter {
         String json = stringRedisTemplate.opsForValue().get(session.getId());
         User user = gson.fromJson(json, User.class);
         if (null != user || null != user.getUser_id()) {
+            session.setAttribute("user",json);
             stringRedisTemplate.expire(session.getId(), 1800, TimeUnit.SECONDS);
             requestContext.setSendZuulResponse(true);
             return null;
