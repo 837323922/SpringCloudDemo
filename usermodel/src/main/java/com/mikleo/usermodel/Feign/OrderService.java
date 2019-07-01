@@ -1,23 +1,20 @@
-package com.mikleo.usermodel.Service;
+package com.mikleo.usermodel.Feign;
 
 import com.mikleo.usermodel.Model.Order;
 import org.springframework.cloud.netflix.feign.FeignClient;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@FeignClient("service-ordermodel")
+@FeignClient(value = "service-ordermodel")
 public interface OrderService {
 
     @RequestMapping(value = "/order/{id}", method = RequestMethod.GET)
-    Order findOrderByorder_id(@PathVariable int id);
+    Order findOrderByorder_id(@PathVariable("id") int id);
 
 
     @RequestMapping(value = "/order/findbyuser/{id}", method = RequestMethod.GET)
-    List<Order> findOrdersByuser_id(@PathVariable int id);
+    List<Order> findOrdersByuser_id(@PathVariable("id") int id);
 
 
     @RequestMapping(value = "/order", method = RequestMethod.POST)
@@ -25,7 +22,7 @@ public interface OrderService {
 
 
     @RequestMapping(value = "/order/{id}", method = RequestMethod.DELETE)
-    String deleteOrderBy(@PathVariable int id);
+    String deleteOrderBy(@PathVariable("id") int id);
 
 
     @RequestMapping(value = "/order", method = RequestMethod.PATCH)

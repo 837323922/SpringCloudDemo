@@ -2,10 +2,11 @@ package com.mikleo.usermodel.Model;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 @Data
-public class User {
+public class User implements Serializable {
     private Integer user_id;
     private String username;
     private String password;

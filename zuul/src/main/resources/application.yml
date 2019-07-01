@@ -15,12 +15,19 @@ spring:
       maxIdle: 300
       maxActive: 600
       maxWait: 1000
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
 zuul:
   routes:
     api-a:
       path: /**
       serviceId: service-usermodel
+      sensitiveHeaders: "*"
 #    api-b:
 #      path: /api-b/**
 #      serviceId: service-feign
+
+
+
 

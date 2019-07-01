@@ -1,4 +1,4 @@
-package com.mikleo.usermodel.Service;
+package com.mikleo.usermodel.Feign;
 
 import com.mikleo.usermodel.Model.Good;
 import org.springframework.cloud.netflix.feign.FeignClient;
@@ -12,10 +12,10 @@ import java.util.List;
 @FeignClient("service-goodsmodel")
 public interface GoodService {
     @RequestMapping(value = "/good/{id}", method = RequestMethod.GET)
-    Good findGoodByGood_id(@PathVariable int id);
+    Good findGoodByGood_id(@PathVariable("id") int id);
 
     @RequestMapping(value = "/good/findbyuser/{id}", method = RequestMethod.GET)
-    List<Good> findGoodsByuser_id(@PathVariable int id);
+    List<Good> findGoodsByuser_id(@PathVariable("id") int id);
 
 
     @RequestMapping(value = "/good", method = RequestMethod.POST)
@@ -23,7 +23,7 @@ public interface GoodService {
 
 
     @RequestMapping(value = "/good/{id}", method = RequestMethod.DELETE)
-    String deleteGoodById(@PathVariable int id);
+    String deleteGoodById(@PathVariable("id") int id);
 
 
     @RequestMapping(value = "/good", method = RequestMethod.PATCH)

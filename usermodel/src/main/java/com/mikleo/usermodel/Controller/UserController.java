@@ -1,19 +1,15 @@
 package com.mikleo.usermodel.Controller;
 
-import com.mikleo.usermodel.Model.LoginMsg;
+import com.google.gson.Gson;
 import com.mikleo.usermodel.Model.User;
+import com.mikleo.usermodel.Feign.OrderService;
 import com.mikleo.usermodel.Service.UserService;
-import org.apache.catalina.Session;
-import org.apache.http.HttpRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.RequestContextHolder;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
-
-import static com.mikleo.usermodel.Service.Impl.UserServiceImpl.md5;
 
 @RestController
 public class UserController {
@@ -22,7 +18,12 @@ public class UserController {
     private UserService userService;
 
     @Autowired
-    private RedisTemplate redisTemplate;
+    OrderService orderService;
+
+    @Autowired
+    StringRedisTemplate stringRedisTemplate;
+
+    private Gson gson = new Gson();
 
     @RequestMapping(value = "/user", method = RequestMethod.POST)
     public String createNewUser(@RequestBody User user) {
@@ -45,13 +46,18 @@ public class UserController {
 
     @RequestMapping(value = "/user", method = RequestMethod.PATCH)
     public String changePassword(@RequestBody User user) {
+
         userService.changePassword(user);
+        String sessionId  = RequestContextHolder.currentRequestAttributes().getSessionId();
+        stringRedisTemplate.opsForValue().set(sessionId,gson.toJson(user,User.class));
         return "密码修改成功";
     }
 
     @RequestMapping(value = "/user", method = RequestMethod.PUT)
     public String setMsg(@RequestBody User user) {
         userService.changeMsg(user);
+        String sessionId  = RequestContextHolder.currentRequestAttributes().getSessionId();
+        stringRedisTemplate.opsForValue().set(sessionId,gson.toJson(user,User.class));
         return "信息修改成功";
     }
 
