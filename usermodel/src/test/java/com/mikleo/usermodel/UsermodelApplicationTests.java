@@ -19,7 +19,7 @@ public class UsermodelApplicationTests {
 
     @Test
     public void contextLoads() {
-        System.out.println(orderService.findOrderByorder_id(1));
+//        System.out.println(orderService.findOrderByorder_id(1));
 
 //        Gson gson = new Gson();
 //        User user = userDao.getUserByuserId(1);

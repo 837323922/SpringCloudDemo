@@ -1,20 +1,36 @@
 package com.mikleo.usermodel.Service.Impl;
 
 import com.mikleo.usermodel.Dao.UserDao;
+import com.mikleo.usermodel.Feign.GoodService;
+import com.mikleo.usermodel.Feign.OrderService;
+import com.mikleo.usermodel.Feign.ShopService;
+import com.mikleo.usermodel.Model.Good;
+import com.mikleo.usermodel.Model.Order;
 import com.mikleo.usermodel.Model.User;
 import com.mikleo.usermodel.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.math.BigInteger;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import java.sql.Date;
+
+import static com.mikleo.usermodel.Util.StringUtils.md5;
 
 @Service
 public class UserServiceImpl implements UserService {
 
     @Autowired
     public UserDao userDao;
+
+    @Autowired
+    public OrderService orderService;
+
+    @Autowired
+    public GoodService goodService;
+
+    @Autowired
+    public ShopService shopService;
 
     @Override
     public User getUserByuserId(Integer id) {
@@ -27,41 +43,38 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void crearteNewUser(User user) {
+    public boolean crearteNewUser(User user) {
         user.setPassword(md5(user.getPassword()));
-        userDao.crearteNewUser(user);
+        return userDao.crearteNewUser(user);
     }
 
     @Override
-    public void changePassword(User user) {
+    public boolean changePassword(User user) {
         user.setPassword(md5(user.getPassword()));
-        userDao.changePassword(user);
+        return userDao.changePassword(user);
     }
 
     @Override
-    public void changeMsg(User user) {
-        userDao.changeMsg(user);
+    public boolean changeMsg(User user) {
+        return userDao.changeMsg(user);
     }
 
-    public static String md5(String plainText) {
-        //定义一个字节数组
-        byte[] secretBytes = null;
-        try {
-            // 生成一个MD5加密计算摘要
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            //对字符串进行加密
-            md.update(plainText.getBytes());
-            //获得加密后的数据
-            secretBytes = md.digest();
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException("没有md5这个算法！");
-        }
-        //将加密后的数据转换为16进制数字
-        String md5code = new BigInteger(1, secretBytes).toString(16);// 16进制数字
-        // 如果生成数字未满32位，需要前面补0
-        for (int i = 0; i < 32 - md5code.length(); i++) {
-            md5code = "0" + md5code;
-        }
-        return md5code;
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED)
+    public String buyGoods(Order order) {
+//        User user = userDao.getUserByuserId(order.getUser_id());
+//        Good good = goodService.findGoodByGood_id(order.getGood_id());
+//        double balance = user.getBalance();
+//        if (balance < order.getTotalprice())
+//            return "余额不足";
+//        user.setBalance(balance - order.getTotalprice());
+//        good.setGoodstock(good.getGoodstock() - order.getGoodnum());
+//        good.setSalesvolume(good.getSalesvolume() + order.getGoodnum());
+//        goodService.updateGoodMsg(good);
+//        order.setComfirmtime(new Date(new java.util.Date().getTime()));
+//        orderService.updateOrderMsg(order);
+        return "订单完成";
     }
+
+
 }

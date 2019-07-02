@@ -14,7 +14,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 
 import java.util.concurrent.TimeUnit;
 
-import static com.mikleo.usermodel.Service.Impl.UserServiceImpl.md5;
+import static com.mikleo.usermodel.Util.StringUtils.md5;
 
 @RestController
 public class LoginController {

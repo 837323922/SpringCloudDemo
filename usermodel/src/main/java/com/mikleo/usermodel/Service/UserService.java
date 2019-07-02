@@ -1,5 +1,6 @@
 package com.mikleo.usermodel.Service;
 
+import com.mikleo.usermodel.Model.Order;
 import com.mikleo.usermodel.Model.User;
 
 public interface UserService {
@@ -8,9 +9,11 @@ public interface UserService {
 
     User getUserByusername(String username);
 
-    void crearteNewUser(User user);
+    boolean crearteNewUser(User user);
 
-    void changePassword(User user);
+    boolean changePassword(User user);
 
-    void changeMsg(User user);
+    boolean changeMsg(User user);
+
+    String buyGoods(Order order);
 }
