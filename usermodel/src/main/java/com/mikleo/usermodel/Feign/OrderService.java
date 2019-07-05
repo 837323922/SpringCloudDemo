@@ -1,11 +1,10 @@
 package com.mikleo.usermodel.Feign;
 
-import com.mikleo.usermodel.Config.FooCofing;
 import com.mikleo.usermodel.Model.Order;
-import feign.RequestLine;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 @FeignClient(value = "service-ordermodel")

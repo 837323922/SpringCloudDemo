@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 
 import static com.mikleo.usermodel.Util.StringUtils.md5;
@@ -62,17 +63,17 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
     public String buyGoods(Order order) {
-//        User user = userDao.getUserByuserId(order.getUser_id());
-//        Good good = goodService.findGoodByGood_id(order.getGood_id());
-//        double balance = user.getBalance();
-//        if (balance < order.getTotalprice())
-//            return "余额不足";
-//        user.setBalance(balance - order.getTotalprice());
-//        good.setGoodstock(good.getGoodstock() - order.getGoodnum());
-//        good.setSalesvolume(good.getSalesvolume() + order.getGoodnum());
-//        goodService.updateGoodMsg(good);
-//        order.setComfirmtime(new Date(new java.util.Date().getTime()));
-//        orderService.updateOrderMsg(order);
+        User user = userDao.getUserByuserId(order.getUser_id());
+        Good good = goodService.findGoodByGood_id(order.getGood_id());
+        BigDecimal balance = user.getBalance();
+        if (balance.compareTo(order.getTotalprice()) == 0)
+            return "余额不足";
+        user.setBalance(balance.subtract(order.getTotalprice()));
+        good.setGoodstock(good.getGoodstock() - order.getGoodnum());
+        good.setSalesvolume(good.getSalesvolume() + order.getGoodnum());
+        goodService.updateGoodMsg(good);
+        order.setComfirmtime(new Date(new java.util.Date().getTime()));
+        orderService.updateOrderMsg(order);
         return "订单完成";
     }
 

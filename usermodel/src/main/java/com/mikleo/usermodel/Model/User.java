@@ -3,6 +3,7 @@ package com.mikleo.usermodel.Model;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.sql.Date;
 
 @Data
@@ -14,6 +15,6 @@ public class User implements Serializable {
     private String email;
     private String phone;
     private Date reg_time;
-    private double balance;
+    private BigDecimal balance;
     private int role;
 }

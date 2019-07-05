@@ -26,13 +26,14 @@ public class OrdermodelApplicationTests {
 
     @Test
     public void contextLoads() {
-        Get index = new Get.Builder("test",1+"").build();
-        try {
-            JestResult jestResult = jestClient.execute(index);
-            System.out.println(jestResult.getJsonString());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+//        Get index = new Get.Builder("test",1+"").build();
+//        try {
+//            JestResult jestResult = jestClient.execute(index);
+//            System.out.println(jestResult.getJsonString());
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 //        Gson gson = new Gson();
 //        Order order = OrderDao.findOrderByorder_id(1);
 //        System.out.println(gson.toJson(order));

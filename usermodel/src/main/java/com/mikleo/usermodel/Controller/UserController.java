@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.RequestContextHolder;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -32,7 +33,7 @@ public class UserController {
     public String createNewUser(@RequestBody User user) {
         user.setRole(1);
         user.setReg_time(new java.sql.Date(new Date().getTime()));
-        user.setBalance(0);
+        user.setBalance(new BigDecimal("0"));
         if (userService.crearteNewUser(user))
             return "create user success!";
         else
